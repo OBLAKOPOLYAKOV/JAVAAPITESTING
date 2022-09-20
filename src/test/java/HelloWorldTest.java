@@ -10,24 +10,18 @@ import java.util.Map;
 public class HelloWorldTest {
     @Test
     public void testRestAssured(){
+        Map<String, Object> body = new HashMap<>();
+        body.put("param1","value1");
+        body.put("param2", "value2");
 
 
-        Map<String, String> params= new HashMap<>();
-        params.put("name", "John");
-
-        JsonPath response = RestAssured
+        Response response = RestAssured
                 .given()
-                .queryParams(params)
-                .get("https://playground.learnqa.ru/api/hello")
-                .jsonPath();
+                .body(body)
+                .post("https://playground.learnqa.ru/api/check_type")
+                .andReturn();
 
-        String answer = response.get("answer2");
+        response.print();
 
-        if(answer == null) {
-            System.out.println("The key answer2 is absent");
-        }
-        else {
-            System.out.println(answer);
-        }
     }
 }
