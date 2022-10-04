@@ -1,3 +1,5 @@
+package homework;
+
 import io.restassured.RestAssured;
 import io.restassured.internal.common.assertion.Assertion;
 import io.restassured.path.json.JsonPath;
