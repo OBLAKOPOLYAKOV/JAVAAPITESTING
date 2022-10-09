@@ -7,6 +7,7 @@ import static org.hamcrest.Matchers.hasKey;
 import java.awt.*;
 import java.util.Map;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class baseTestCase {
@@ -21,6 +22,13 @@ public class baseTestCase {
         Map<String, String> cookies = Response.getCookies();
 
         assertTrue(cookies.containsKey(name), "Response doesnt have cookie with name "+name);
+        return cookies.get(name);
+    }
+
+    protected String getCookieValue(Response Response, String name, String value){
+        Map<String, String> cookies = Response.getCookies();
+
+        assertEquals(cookies.get(name), value, "Response doesnt have cookie with name "+name +" or cr cookie havent value: "+value);
         return cookies.get(name);
     }
 
